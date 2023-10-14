@@ -11,7 +11,8 @@ class Bullet {
             y: 5,
         };
 
-        this.size = 15;
+        this.isDestroyed = false;
+        this.size = 25;
         this.image = new Image();
         this.image.src = './images/bullet.png';
 
@@ -32,6 +33,12 @@ class Bullet {
 
     update() {
         this.draw();
-        this.move();
+
+        if(!this.isDestroyed) {
+            this.move();
+        } else {
+            this.position.x = -100;
+            this.position.y = -100;
+        }
     }
 }

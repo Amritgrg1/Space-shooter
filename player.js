@@ -11,7 +11,8 @@ class Player{
             y: 0,
         };
 
-        this.size = 50;
+        this.isAlive = true;
+        this.size = 70;
         this.image = new Image();
         this.image.src = './images/spaceship.pod_.1.green_.png';
     }
@@ -22,6 +23,12 @@ class Player{
         c.drawImage(this.image, this.position.x, this.position.y, this.size, this.size);
     }
 
+    gameOverScreen() {
+        c.fillStyle = 'white';
+        c.font = '40px Arial';
+        c.fillText("GAME OVER!", canvas.width/2.8, canvas.height/2.5 + 150);
+    }
+
     move() {
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -29,6 +36,10 @@ class Player{
 
     update() {
         this.draw();
-        this.move();
+        if(this.isAlive) {
+            this.move();
+        } else {
+            this.gameOverScreen();
+        }
     }
 }
